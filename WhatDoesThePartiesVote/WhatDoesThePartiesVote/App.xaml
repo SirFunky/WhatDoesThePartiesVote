@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Application xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="WhatDoesThePartiesVote.App">
+    <Application.Resources>
+        <Color x:Key ="RDBlue">#001e3c</Color>
+        <Color x:Key="Hallon">#e6004d</Color>
+        <Color x:Key="Paprika">#e61700</Color>
+        <Color x:Key="Mandarin">#ff6600</Color>
+        <Color x:Key="Aprikos">#ffb34d</Color>
+        <Color x:Key="Kakao">#594724</Color>
+        <Color x:Key="Mosa">#457300</Color>
+        <Color x:Key="Lime">#b3e600</Color>
+        <Color x:Key="Himmel">#99ccff</Color>
+    </Application.Resources>
+</Application>

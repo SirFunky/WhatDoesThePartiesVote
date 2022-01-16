@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="WhatDoesThePartiesVote.SavedPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:model="clr-namespace:WhatDoesThePartiesVote"
+    xmlns:mvvm="clr-namespace:MvvmHelpers;assembly=MvvmHelpers"
+    xmlns:viewmodels="clr-namespace:WhatDoesThePartiesVote"
+    xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+    x:Name="Saved"
+    Title="Saved"
+    x:DataType="model:Voting"
+    BackgroundColor="{StaticResource Mosa}">
+    <ContentPage.BindingContext>
+        <model:Voting />
+    </ContentPage.BindingContext>
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <xct:ItemSelectedEventArgsConverter x:Key="ItemSelectedEventArgsConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Add" Command="{Binding AddCommand}"/>
+    </ContentPage.ToolbarItems>
+    <StackLayout>
+        <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+            <Button x:Name="HomeBtn" Grid.Row="2" Text="Home" TextColor="Black" BackgroundColor="{StaticResource Lime}" Clicked="HomeBtn_Clicked" />
+            <Button x:Name="SearchBtn" Grid.Row="3" Text="Search" TextColor="Black" BackgroundColor="{StaticResource Lime}" Clicked="SearchBtn_Clicked" />
+        </StackLayout>
+        <Label Text="Welcome to SavedPage!"
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand" TextColor="White"/>
+        <ListView
+        IsRefreshing="{Binding IsBusy, Mode=OneWay}"
+        ItemsSource="{Binding VotingResults}"
+        RefreshCommand="{Binding RefreshCommand}"
+        SelectionMode="Single"
+        CachingStrategy="RecycleElement">
+            <ListView.Behaviors>
+                <xct:EventToCommandBehavior
+                EventName="ItemSelected"
+                Command="{Binding SelectedCommand}"                
+                EventArgsConverter="{StaticResource ItemSelectedEventArgsConverter}"/>
+            </ListView.Behaviors>
+            <ListView.ItemTemplate>
+                <DataTemplate x:DataType="model:VotingResult">
+                    <ViewCell>
+                        <ViewCell.ContextActions>
+                            <MenuItem
+                            Command="{Binding Source={x:Reference Saved}, Path=BindingContext.RemoveCommand}"
+                            CommandParameter="{Binding .}"
+                            IsDestructive="True"
+                            Text="Delete" />
+                        </ViewCell.ContextActions>
+                        <Grid Padding="10">
+                            <Frame>
+                                <StackLayout Orientation="Vertical">
+                                    <StackLayout Orientation="Horizontal">
+                                        <Label Text="Parti:" FontSize="Small" TextColor="Black" Margin="25,0,0,0"/>
+                                        <Label  x:Name="Parti" Text="{Binding parti}" FontSize="Small" TextColor="Black" Margin="5,1,0,0" />
+                                    </StackLayout>
+                                    <StackLayout Orientation="Horizontal">
+                                        <Label Text="Ja:" FontSize="Small" TextColor="Black" Margin="25,0,0,0"/>
+                                        <Label  x:Name="Ja" Text="{Binding Ja}" FontSize="Micro" TextColor="Black" Margin="5,3,0,0"/>
+                                    </StackLayout>
+                                    <StackLayout Orientation="Horizontal">
+                                        <Label Text="Nej:" FontSize="Small" TextColor="Black" Margin="25,0,0,0"/>
+                                        <Label  x:Name="Nej" Text="{Binding Nej}" FontSize="Micro" TextColor="Black" Margin="5,3,0,0"/>
+                                    </StackLayout>
+                                    <StackLayout Orientation="Horizontal">
+                                        <Label Text="Frånvarande:" FontSize="Small" TextColor="Black" Margin="25,0,0,0"/>
+                                        <Label  x:Name="Frånvarande" Text="{Binding Frånvarande}" FontSize="Micro" TextColor="Black" Margin="5,3,0,0"/>
+                                    </StackLayout>
+                                    <StackLayout Orientation="Horizontal">
+                                        <Label Text="Avstår:" FontSize="Small" TextColor="Black" Margin="25,0,0,0"/>
+                                        <Label x:Name="Avstår" Text="{Binding Avstår}" FontSize="Micro" TextColor="Black" Margin="5,3,0,25"/>
+                                    </StackLayout>
+                                </StackLayout>
+                            </Frame>
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </StackLayout>
+</ContentPage>

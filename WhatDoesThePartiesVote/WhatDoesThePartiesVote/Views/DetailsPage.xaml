@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:viewmodels="clr-namespace:WhatDoesThePartiesVote"
+             x:Class="WhatDoesThePartiesVote.DetailsPage"
+             Title="Details"
+             x:Name="Details"
+             BackgroundColor="{StaticResource RDBlue}">
+    <ContentPage.BindingContext>
+        <viewmodels:Voting />
+    </ContentPage.BindingContext>
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Add" Command="{Binding AddCommand}"/>
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <StackLayout>
+            <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+                <Button x:Name="HomeBtn" Grid.Row="2" Text="Home" TextColor="Black" BackgroundColor="{StaticResource Himmel}" Clicked="HomeBtn_Clicked" />
+                <Button x:Name="SearchBtn" Grid.Row="3" Text="Search" TextColor="Black" BackgroundColor="{StaticResource Himmel}" Clicked="SearchBtn_Clicked" />
+                <Button x:Name="Saved" Grid.Row="2" Text="Saved" TextColor="Black" BackgroundColor="{StaticResource Himmel}" Clicked="Saved_Clicked" />
+            </StackLayout>
+            <Label Text="Welcome to DetailsPage!"
+                VerticalOptions="Center" 
+                HorizontalOptions="Center" TextColor="White"/>
+            <StackLayout Orientation="Vertical">
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Parti:" FontSize="Small" TextColor="White" Margin="25,0,0,0"/>
+                    <Label  x:Name="Parti" Text="{Binding parti}" FontSize="Small" TextColor="White" Margin="5,1,0,0" />
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Ja:" FontSize="Small" TextColor="White" Margin="25,0,0,0"/>
+                    <Label  x:Name="Ja" Text="{Binding Ja}" FontSize="Micro" TextColor="White" Margin="5,3,0,0"/>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Nej:" FontSize="Small" TextColor="White" Margin="25,0,0,0"/>
+                    <Label  x:Name="Nej" Text="{Binding Nej}" FontSize="Micro" TextColor="White" Margin="5,3,0,0"/>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Frånvarande:" FontSize="Small" TextColor="White" Margin="25,0,0,0"/>
+                    <Label  x:Name="Frånvarande" Text="{Binding Frånvarande}" FontSize="Micro" TextColor="White" Margin="5,3,0,0"/>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Avstår:" FontSize="Small" TextColor="White" Margin="25,0,0,0"/>
+                    <Label x:Name="Avstår" Text="{Binding Avstår}" FontSize="Micro" TextColor="White" Margin="5,3,0,25"/>
+                </StackLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Button Text="Add" Command="{Binding Source={x:Reference Details}, Path=BindingContext.AddCommand}" CommandParameter="{Binding .}" TextColor="Black" BackgroundColor="{StaticResource Himmel}" Margin="25,0,0,0" />
+                </StackLayout>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

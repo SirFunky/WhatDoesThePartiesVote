@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="WhatDoesThePartiesVote.MainPage"
+             Title="Home">
+
+    <StackLayout>
+        <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+            <Button x:Name="SearchBtn" Grid.Row="3" Text="Search" TextColor="White" BackgroundColor="{StaticResource RDBlue}" Clicked="SearchBtn_Clicked" />
+            <Button x:Name="Saved" Grid.Row="2" Text="Saved" TextColor="White" BackgroundColor="{StaticResource RDBlue}" Clicked="Saved_Clicked" />
+        </StackLayout>
+        <Label Text="This is an app meant to make it esier for the common person to see what the diffrent parties actualy vote for or against!" FontSize="16" Padding="30,30,30,30"/>
+    </StackLayout>
+
+</ContentPage>
